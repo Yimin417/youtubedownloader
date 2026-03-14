@@ -1,0 +1,16 @@
+# YouTube Downloader Dependencies
+
+# Core download engine
+yt-dlp>=2024.1.0
+
+# GUI framework
+customtkinter>=5.2.0
+
+# Image handling
+Pillow>=10.0.0
+
+# FFmpeg integration (optional but recommended)
+# ffmpeg-python>=0.2.0
+
+# Additional utilities
+requests>=2.31.0
