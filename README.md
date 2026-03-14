@@ -17,26 +17,26 @@
 ## 📋 Features / 功能特性
 
 ### English
-- **High-quality downloads** - Support for up to 8K resolution (2160p, 4K, 8K)
-- **Multiple formats** - MP4, WebM, MKV for video; MP3, M4A, WAV, FLAC for audio
-- **Playlist support** - Download entire playlists with customizable range
-- **Subtitle download** - Download and optionally embed subtitles in multiple languages
-- **Thumbnail download** - Automatically fetch and save video thumbnails
-- **Progress tracking** - Real-time download progress with speed and ETA display
-- **Download history** - Keep track of recent downloads with configurable history limit
-- **Dark/Light themes** - Choose your preferred appearance mode
-- **Configurable settings** - Customize download path, default quality, format, and more
+- **High-quality downloads** - Support for up to 8K resolution (144p to 8K)
+- **Multiple video formats** - MP4, WebM, MKV
+- **Audio extraction** - Convert to MP3 (320kbps) with audio-only mode
+- **Playlist support** - Download entire YouTube playlists
+- **Subtitle download** - Download subtitles in multiple languages with optional embedding (requires FFmpeg)
+- **Progress tracking** - Real-time download progress with speed and ETA
+- **Download history** - Track recent downloads (configurable limit, default 10)
+- **Dark/Light themes** - Switch between appearance modes
+- **Settings panel** - Configure download path, history limit, auto-exit option
 
 ### 中文
-- **高质量下载** - 支持最高8K分辨率（2160p、4K、8K）
-- **多种格式** - 视频：MP4、WebM、MKV；音频：MP3、M4A、WAV、FLAC
-- **播放列表支持** - 下载整个播放列表，支持自定义下载范围
-- **字幕下载** - 下载多语言字幕，可选择嵌入视频
-- **缩略图下载** - 自动获取并保存视频缩略图
+- **高质量下载** - 支持从144p到8K全分辨率
+- **多种视频格式** - MP4、WebM、MKV
+- **音频提取** - 仅音频模式转换为MP3（320kbps）
+- **播放列表支持** - 下载完整的YouTube播放列表
+- **字幕下载** - 下载多语言字幕，可选嵌入视频（需FFmpeg）
 - **进度跟踪** - 实时显示下载进度、速度和剩余时间
-- **下载历史** - 记录下载历史，可配置保存数量
-- **深色/浅色主题** - 选择喜欢的界面主题
-- **可配置设置** - 自定义下载路径、默认质量、格式等
+- **下载历史** - 记录下载历史（可配置数量，默认10条）
+- **深色/浅色主题** - 切换界面外观
+- **设置面板** - 配置下载路径、历史限制、自动退出选项
 
 ---
 
@@ -156,21 +156,19 @@ python -m src
 
 #### Basic Workflow
 1. **Enter URL** - Paste a YouTube video or playlist URL
-2. **Fetch info** - Click "Fetch Info" to load video details
-3. **Configure options** - Select resolution, format, and additional options
-4. **Download** - Click "Download" to start
-5. **Monitor** - Watch progress in real-time
-6. **View history** - Check the download history section for past downloads
+2. **Configure options** - Select resolution, format, and additional options (subtitles, embed)
+3. **Download** - Click "Download" to start
+4. **Monitor** - Watch progress in real-time with speed and ETA
+5. **View history** - Check the download history section for past downloads
 
 #### Available Options
 | Option | Description |
 |--------|-------------|
 | Resolution | Target video quality (144p - 8K) |
-| Format | Container format (MP4, WebM, MKV) |
-| Audio Only | Extract audio as MP3 |
-| Download Subtitles | Get subtitle files in available languages |
+| Format | Container format for video (MP4, WebM, MKV) |
+| Audio Only | Extract audio as MP3 (320kbps) |
+| Download Subtitles | Download subtitle files in available languages |
 | Embed Subtitles | Burn subtitles into video (requires FFmpeg) |
-| Download Thumbnail | Save video thumbnail image |
 
 ### 中文
 
@@ -188,21 +186,19 @@ python -m src
 
 #### 基本流程
 1. **输入URL** - 粘贴YouTube视频或播放列表链接
-2. **获取信息** - 点击"Fetch Info"加载视频详情
-3. **配置选项** - 选择分辨率、格式和其他选项
-4. **开始下载** - 点击"Download"开始下载
-5. **实时监控** - 查看下载进度
-6. **查看历史** - 在历史记录部分查看过往下载
+2. **配置选项** - 选择分辨率、格式和其他选项（字幕、嵌入等）
+3. **开始下载** - 点击"Download"开始下载
+4. **实时监控** - 查看实时进度、速度和剩余时间
+5. **查看历史** - 在历史记录部分查看过往下载
 
 #### 可用选项
 | 选项 | 描述 |
 |------|------|
 | 分辨率 | 目标视频质量（144p - 8K） |
-| 格式 | 容器格式（MP4、WebM、MKV） |
-| 仅音频 | 提取音频为MP3 |
+| 格式 | 视频容器格式（MP4、WebM、MKV） |
+| 仅音频 | 提取音频为MP3（320kbps） |
 | 下载字幕 | 获取可用语言的字幕文件 |
 | 嵌入字幕 | 将字幕烧录到视频（需要FFmpeg） |
-| 下载缩略图 | 保存视频缩略图 |
 
 ---
 
@@ -251,21 +247,18 @@ Configuration is stored in `config.json` (auto-created on first run):
   "download_subtitles": false,
   "subtitle_languages": ["en"],
   "embed_subtitles": false,
-  "download_thumbnail": true,
+  "download_thumbnail": true,      // Reserved for future use / 保留字段（未来功能）
   "theme": "dark",
   "history_limit": 10,
   "auto_exit": false
 }
 ```
 
+**Note**: The `download_thumbnail` option is currently reserved and not used by the GUI. Thumbnail downloads are disabled for performance reasons.
+
+**注意**：`download_thumbnail` 选项当前为保留字段，GUI未提供控制。缩略图下载功能已禁用以提高性能。
+
 ---
-
-## ⌨️ Keyboard Shortcuts / 键盘快捷键
-
-- **Enter** in URL field - Fetch video info / 获取视频信息
-- **Ctrl+Q** - Quit application / 退出应用
-- **Ctrl+S** - Open settings / 打开设置
-
 ---
 
 ## 🔧 Troubleshooting / 故障排除
@@ -300,7 +293,7 @@ Configuration is stored in `config.json` (auto-created on first run):
 ### Programmatic Usage / 编程使用
 
 ```python
-from downloader.downloader.engine import DownloadEngine
+from downloader.engine import DownloadEngine
 
 engine = DownloadEngine(download_path="/path/to/downloads")
 engine.set_progress_callback(lambda p: print(f"{p.progress:.1f}% - {p.speed}"))
@@ -311,7 +304,17 @@ success = engine.download(
     output_format="mp4",
     download_subtitles=True,
     subtitle_langs=["en", "zh"],
-    download_thumbnail=True
+    embed_subtitle=False,        # Set to True to embed subtitles (requires FFmpeg)
+    download_thumbnail=False    # Thumbnail download currently disabled
+)
+
+# For playlist downloads with range:
+success = engine.download(
+    url="https://youtube.com/playlist?list=...",
+    resolution="1080",
+    output_format="mp4",
+    playlist_start=1,    # Start from first video
+    playlist_end=10      # Download first 10 videos only
 )
 ```
 
